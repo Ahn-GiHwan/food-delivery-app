@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import Settings from './src/pages/Settings';
-// import Orders from './src/pages/Orders';
-// import Delivery from './src/pages/Delivery';
-// import SignIn from './src/pages/SignIn';
-// import SignUp from './src/pages/SignUp';
+import Settings from './src/pages/Settings';
+import Orders from './src/pages/Orders';
+import Delivery from './src/pages/Delivery';
+import SignIn from './src/pages/SignIn';
+import SignUp from './src/pages/SignUp';
 
 export type LoggedInParamList = {
   Orders: undefined;
