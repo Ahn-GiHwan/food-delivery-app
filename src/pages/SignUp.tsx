@@ -1,11 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import axios, {AxiosError} from 'axios';
 import React, {useCallback, useRef, useState} from 'react';
-import {ActivityIndicator, Alert, Platform, TextInput} from 'react-native';
-import Config from 'react-native-config';
+import {ActivityIndicator, Alert, TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {RootStackParamList} from '../../App';
 import DismissKeyboardView from '../components/DismissKeyboardView';
+import useConfig from '../hooks/useConfig';
 
 const Container = styled.SafeAreaView``;
 
@@ -54,6 +54,8 @@ function SignUp({navigation}: SignInScreenProps) {
   const nameRef = useRef<TextInput | any>(null);
   const passwordRef = useRef<TextInput | any>(null);
 
+  const URL = useConfig();
+
   const onChangeEmail = useCallback(text => setEmail(text.trim()), []);
   const onChangeName = useCallback(text => setName(text.trim()), []);
   const onChangePassword = useCallback(text => setPassword(text.trim()), []);
@@ -84,11 +86,8 @@ function SignUp({navigation}: SignInScreenProps) {
       return;
     }
     if (inputTypeValidation()) {
-      const URL =
-        Platform.OS === 'ios' ? Config.API_URL_IOS : Config.API_URL_AND;
       try {
         setLoading(true);
-        console.log(Config.API_URL);
         const {data} = await axios.post(`${URL}/user`, {
           email,
           name,
@@ -106,7 +105,7 @@ function SignUp({navigation}: SignInScreenProps) {
         setLoading(false);
       }
     }
-  }, [loading, inputTypeValidation, email, name, password, navigation]);
+  }, [loading, inputTypeValidation, URL, email, name, password, navigation]);
 
   return (
     <DismissKeyboardView>
