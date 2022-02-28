@@ -1,9 +1,14 @@
 import React, {useCallback, useRef, useState} from 'react';
-import {Alert, TextInput} from 'react-native';
+import {ActivityIndicator, Alert, TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import DismissKeyboardView from '../components/DismissKeyboardView';
+import axios, {AxiosError} from 'axios';
+import userSlice from '../redux/slices/user';
+import {useAppDispatch} from '../redux/store';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import useConfig from '../hooks/useConfig';
 
 const Container = styled.SafeAreaView``;
 
@@ -45,11 +50,16 @@ const SignUpButtonText = styled.Text``;
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({navigation}: SignInScreenProps) {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useAppDispatch();
+
   const emailRef = useRef<TextInput | any>(null);
   const passwordRef = useRef<TextInput | any>(null);
+
+  const URL = useConfig();
 
   const canGoNext = email && password;
 
@@ -75,12 +85,37 @@ function SignIn({navigation}: SignInScreenProps) {
     return true;
   }, [email, password]);
 
-  const onSubmit = useCallback(() => {
-    if (inputTypeValidation()) {
-      console.log(email, password);
-      Alert.alert('알림', '로그인이 완료되었습니다.');
+  const onSubmit = useCallback(async () => {
+    if (loading) {
+      return;
     }
-  }, [email, inputTypeValidation, password]);
+    if (inputTypeValidation()) {
+      try {
+        setLoading(true);
+        const {
+          data: {data},
+        } = await axios.post(`${URL}/login`, {email, password});
+        dispatch(
+          userSlice.actions.setUser({
+            email: data.email,
+            name: data.name,
+            accessToken: data.accessToken,
+          }),
+        );
+
+        await EncryptedStorage.setItem('refreshToken', data.refreshToken);
+
+        Alert.alert('알림', '로그인이 완료되었습니다.');
+      } catch (error) {
+        const errorResponse = (error as AxiosError).response;
+        if (errorResponse) {
+          Alert.alert('알림', errorResponse.data.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, [URL, dispatch, email, inputTypeValidation, loading, password]);
 
   const goSignUp = useCallback(() => {
     navigation.navigate('SignUp');
@@ -116,8 +151,12 @@ function SignIn({navigation}: SignInScreenProps) {
           />
         </InputWrapper>
         <ButtonZone>
-          <LoginButton onPress={onSubmit} disabled={!canGoNext}>
-            <LoginButtonText>로그인</LoginButtonText>
+          <LoginButton onPress={onSubmit} disabled={!canGoNext || loading}>
+            {loading ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <LoginButtonText>로그인</LoginButtonText>
+            )}
           </LoginButton>
           <SignUpButton onPress={goSignUp}>
             <SignUpButtonText>회원가입하기</SignUpButtonText>
