@@ -1,12 +1,103 @@
-import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {Alert} from 'react-native';
+import axios, {AxiosError} from 'axios';
+import {useAppDispatch} from '../redux/store';
+import userSlice from '../redux/slices/user';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store/reducer';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import styled from 'styled-components/native';
+import useConfig from '../hooks/useConfig';
+
+const Container = styled.SafeAreaView``;
+
+const Money = styled.View`
+  padding: 20px;
+`;
+
+const MoneyText = styled.Text`
+  font-size: 16px;
+`;
+
+const Price = styled.Text`
+  font-weight: bold;
+`;
+
+const ButtonZone = styled.View`
+  align-items: center;
+  padding-top: 20px;
+`;
+
+const LogoutButton = styled.Pressable`
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding-horizontal: 20px;
+  padding-vertical: 10px;
+  background-color: blue;
+`;
+
+const LogoutButtonText = styled.Text`
+  font-size: 16px;
+  color: white;
+`;
 
 function Settings() {
+  const {accessToken, money, name} = useSelector(
+    (state: RootState) => state.user,
+  );
+  const dispatch = useAppDispatch();
+  const URL = useConfig();
+  const onLogout = useCallback(async () => {
+    try {
+      await axios({
+        url: `${URL}/logout`,
+        method: 'POST',
+        headers: {authorization: `Bearer ${accessToken}`},
+      });
+      Alert.alert('알림', '로그아웃 되었습니다.');
+      dispatch(
+        userSlice.actions.setUser({
+          name: '',
+          email: '',
+          accessToken: '',
+        }),
+      );
+      await EncryptedStorage.removeItem('refreshToken');
+    } catch (error) {
+      const errorResponse = (error as AxiosError).response;
+      Alert.alert('에러', errorResponse?.data.message);
+    }
+  }, [URL, accessToken, dispatch]);
+
+  useEffect(() => {
+    const getMoney = async () => {
+      const response = await axios({
+        url: `${URL}/showmethemoney`,
+        method: 'GET',
+        headers: {authorization: `Bearer ${accessToken}`},
+      });
+      dispatch(userSlice.actions.setMoney(response.data.data));
+    };
+    getMoney();
+  }, [URL, accessToken, dispatch]);
+
   return (
-    <SafeAreaView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Settings</Text>
-    </SafeAreaView>
+    <Container>
+      <Money>
+        <MoneyText>
+          {name}님의 수익금{' '}
+          <Price>
+            {money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Price>
+          원
+        </MoneyText>
+      </Money>
+      <ButtonZone>
+        <LogoutButton onPress={onLogout}>
+          <LogoutButtonText>로그아웃</LogoutButtonText>
+        </LogoutButton>
+      </ButtonZone>
+    </Container>
   );
 }
 
