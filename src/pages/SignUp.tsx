@@ -1,6 +1,8 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import axios, {AxiosError} from 'axios';
 import React, {useCallback, useRef, useState} from 'react';
-import {Alert, TextInput} from 'react-native';
+import {ActivityIndicator, Alert, Platform, TextInput} from 'react-native';
+import Config from 'react-native-config';
 import styled from 'styled-components/native';
 import {RootStackParamList} from '../../App';
 import DismissKeyboardView from '../components/DismissKeyboardView';
@@ -43,6 +45,7 @@ const SignButtonText = styled.Text`
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
 function SignUp({navigation}: SignInScreenProps) {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -76,13 +79,34 @@ function SignUp({navigation}: SignInScreenProps) {
     return true;
   }, [email, password]);
 
-  const onSubmit = useCallback(() => {
-    if (inputTypeValidation()) {
-      console.log(email, name, password);
-      Alert.alert('알림', '회원가입이 완료되었습니다.');
-      navigation.navigate('SignIn');
+  const onSubmit = useCallback(async () => {
+    if (loading) {
+      return;
     }
-  }, [inputTypeValidation, email, name, password, navigation]);
+    if (inputTypeValidation()) {
+      const URL =
+        Platform.OS === 'ios' ? Config.API_URL_IOS : Config.API_URL_AND;
+      try {
+        setLoading(true);
+        console.log(Config.API_URL);
+        const {data} = await axios.post(`${URL}/user`, {
+          email,
+          name,
+          password,
+        });
+        console.log(data);
+        Alert.alert('알림', '회원가입이 완료되었습니다.');
+        navigation.navigate('SignIn');
+      } catch (error) {
+        const errorResponse = (error as AxiosError).response;
+        if (errorResponse) {
+          Alert.alert('알림', errorResponse.data.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, [loading, inputTypeValidation, email, name, password, navigation]);
 
   return (
     <DismissKeyboardView>
@@ -125,8 +149,12 @@ function SignUp({navigation}: SignInScreenProps) {
           />
         </InputWrapper>
         <ButtonZone>
-          <SignButton onPress={onSubmit} disabled={!canGoNext}>
-            <SignButtonText>회원가입</SignButtonText>
+          <SignButton onPress={onSubmit} disabled={!canGoNext || loading}>
+            {loading ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <SignButtonText>회원가입</SignButtonText>
+            )}
           </SignButton>
         </ButtonZone>
       </Container>
