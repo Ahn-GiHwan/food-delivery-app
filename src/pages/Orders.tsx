@@ -1,16 +1,27 @@
-import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import React, {useCallback} from 'react';
+import styled from 'styled-components/native';
 import {useSelector} from 'react-redux';
+import {Order} from '../redux/slices/order';
 import {RootState} from '../redux/store/reducer';
+import EachOrder from '../components/EachOrder';
+
+const Container = styled.SafeAreaView``;
+const FlatList = styled.FlatList``;
 
 function Orders() {
   const {orders} = useSelector((state: RootState) => state.order);
+  const renderItem = useCallback(({item}: {item: Order}) => {
+    return <EachOrder item={item} />;
+  }, []);
+
   return (
-    <SafeAreaView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Orders</Text>
-      <Text>{orders.length}</Text>
-    </SafeAreaView>
+    <Container>
+      <FlatList
+        data={orders}
+        keyExtractor={item => item.orderId}
+        renderItem={renderItem}
+      />
+    </Container>
   );
 }
 
