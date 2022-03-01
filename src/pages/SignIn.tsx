@@ -95,6 +95,7 @@ function SignIn({navigation}: SignInScreenProps) {
         const {
           data: {data},
         } = await axios.post(`${URL}/login`, {email, password});
+        setLoading(false);
         dispatch(
           userSlice.actions.setUser({
             email: data.email,
@@ -111,7 +112,6 @@ function SignIn({navigation}: SignInScreenProps) {
         if (errorResponse) {
           Alert.alert('알림', errorResponse.data.message);
         }
-      } finally {
         setLoading(false);
       }
     }
