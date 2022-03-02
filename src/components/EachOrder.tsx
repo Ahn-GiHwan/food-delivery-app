@@ -95,6 +95,7 @@ function EachOrder({item}: Props) {
       if (errorResponse?.status === 400) {
         // 타인이 이미 수락한 경우
         Alert.alert('알림', errorResponse.data.message);
+        setLoading(false);
         dispatch(orderSlice.actions.rejectOrder(item.orderId));
       }
       setLoading(false);
