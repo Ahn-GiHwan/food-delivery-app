@@ -101,11 +101,11 @@ function AppInner() {
             const originalRequest = config;
             const refreshToken = await EncryptedStorage.getItem('refreshToken');
             // token refresh 요청
-            const {data} = await axios.post(
-              `${URL}/refreshToken`, // token refresh api
-              {},
-              {headers: {authorization: `Bearer ${refreshToken}`}},
-            );
+            const {data} = await axios({
+              url: `${URL}/refreshToken`, // token refresh api
+              method: 'POST',
+              headers: {authorization: `Bearer ${refreshToken}`},
+            });
             // 새로운 토큰 저장
             dispatch(userSlice.actions.setAccessToken(data.data.accessToken));
             originalRequest.headers.authorization = `Bearer ${data.data.accessToken}`;
