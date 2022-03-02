@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Alert, View, Text, ActivityIndicator} from 'react-native';
+import {Alert, ActivityIndicator, Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import axios, {AxiosError} from 'axios';
@@ -10,6 +10,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store/reducer';
 import {LoggedInParamList} from '../../App';
 import useConfig from '../hooks/useConfig';
+import NaverMapView, {Marker, Path} from 'react-native-nmap';
 
 const Container = styled.View`
   margin: 5px;
@@ -24,6 +25,14 @@ const Info = styled.Pressable`
 
 const EachInfo = styled.Text`
   flex: 1;
+`;
+
+const DetailContainer = styled.View``;
+const NaverMapContainer = styled.View``;
+const NaverMap = styled.View`
+  width: ${Dimensions.get('window').width - 30}px;
+  height: 200px;
+  margin-top: 10px;
 `;
 
 const ButtonWrapper = styled.View`
@@ -119,10 +128,43 @@ function EachOrder({item}: Props) {
         </EachInfo>
       </Info>
       {detail && (
-        <View>
-          <View>
-            <Text>네이버맵이 들어갈 장소</Text>
-          </View>
+        <DetailContainer>
+          <NaverMapContainer>
+            <NaverMap>
+              <NaverMapView
+                style={{width: '100%', height: '100%'}}
+                zoomControl={false}
+                center={{
+                  zoom: 10,
+                  tilt: 50,
+                  latitude: (start.latitude + end.latitude) / 2,
+                  longitude: (start.longitude + end.longitude) / 2,
+                }}>
+                <Marker
+                  coordinate={{
+                    latitude: start.latitude,
+                    longitude: start.longitude,
+                  }}
+                  pinColor="blue"
+                />
+                <Path
+                  coordinates={[
+                    {
+                      latitude: start.latitude,
+                      longitude: start.longitude,
+                    },
+                    {latitude: end.latitude, longitude: end.longitude},
+                  ]}
+                />
+                <Marker
+                  coordinate={{
+                    latitude: end.latitude,
+                    longitude: end.longitude,
+                  }}
+                />
+              </NaverMapView>
+            </NaverMap>
+          </NaverMapContainer>
           <ButtonWrapper>
             <AcceptButton onPress={onAccept}>
               {loading ? (
@@ -135,7 +177,7 @@ function EachOrder({item}: Props) {
               <ButtonText>거절</ButtonText>
             </RejectButton>
           </ButtonWrapper>
-        </View>
+        </DetailContainer>
       )}
     </Container>
   );
