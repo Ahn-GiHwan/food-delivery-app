@@ -17,6 +17,7 @@ import {useAppDispatch} from './src/redux/store';
 import {RootState} from './src/redux/store/reducer';
 import userSlice from './src/redux/slices/user';
 import orderSlice from './src/redux/slices/order';
+import usePermissions from './src/hooks/usePermission';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,8 @@ function AppInner() {
   const [socket, disconnect] = useSocket();
   const URL = useConfig();
   const dispatch = useAppDispatch();
+
+  usePermissions();
 
   useEffect(() => {
     const getTokenAndRefresh = async () => {
