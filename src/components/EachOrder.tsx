@@ -78,8 +78,8 @@ function EachOrder({item}: Props) {
         method: 'POST',
         headers: {authorization: `Bearer ${accessToken}`},
       });
-      dispatch(orderSlice.actions.acceptOrder(item.orderId));
       setLoading(false);
+      dispatch(orderSlice.actions.acceptOrder(item.orderId));
       navigation.navigate('Delivery');
     } catch (error) {
       const errorResponse = (error as AxiosError).response;
