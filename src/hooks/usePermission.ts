@@ -62,7 +62,7 @@ function usePermissions() {
           }
         })
         .catch(console.error);
-    } else {
+    } else if (Platform.OS === 'ios') {
       check(PERMISSIONS.IOS.CAMERA)
         .then(result => {
           if (
