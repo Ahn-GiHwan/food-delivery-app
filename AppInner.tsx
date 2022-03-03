@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import SplashScreen from 'react-native-splash-screen';
 import useSocket from './src/hooks/useSocket';
 import useConfig from './src/hooks/useConfig';
 import Delivery from './src/pages/Delivery';
@@ -36,6 +37,7 @@ function AppInner() {
         // TODO: 스플래시 스크린 보이기
         const token = await EncryptedStorage.getItem('refreshToken');
         if (!token) {
+          SplashScreen.hide();
           return;
         }
         const response = await axios({
@@ -60,6 +62,7 @@ function AppInner() {
         }
       } finally {
         // TODO: 스플래시 스크린 없애기
+        SplashScreen.hide();
       }
     };
     getTokenAndRefresh();
