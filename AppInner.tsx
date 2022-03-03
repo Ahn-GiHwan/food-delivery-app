@@ -7,6 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import SplashScreen from 'react-native-splash-screen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import useSocket from './src/hooks/useSocket';
 import useConfig from './src/hooks/useConfig';
 import Delivery from './src/pages/Delivery';
@@ -70,7 +71,7 @@ function AppInner() {
 
   useEffect(() => {
     const helloCallback = (data: any) => {
-      console.log(data);
+      console.log('add socket data', data.orderId);
       dispatch(orderSlice.actions.addOrder(data));
     };
     if (socket && isLoggedIn) {
@@ -131,17 +132,34 @@ function AppInner() {
           <Tab.Screen
             name="Orders"
             component={Orders}
-            options={{title: '오더 목록'}}
+            options={{
+              title: '오더 목록',
+              tabBarIcon: ({color, size}) => (
+                <Ionicons name="list" color={color} size={size} />
+              ),
+            }}
           />
           <Tab.Screen
             name="Delivery"
             component={Delivery}
-            options={{headerShown: false}}
+            options={{
+              headerShown: false,
+              title: '지도',
+              tabBarIcon: ({color, size}) => (
+                <Ionicons name="map-outline" color={color} size={size} />
+              ),
+            }}
           />
           <Tab.Screen
             name="Settings"
             component={Settings}
-            options={{title: '내 정보'}}
+            options={{
+              title: '내 정보',
+              unmountOnBlur: true,
+              tabBarIcon: ({color, size}) => (
+                <Ionicons name="settings-outline" color={color} size={size} />
+              ),
+            }}
           />
         </Tab.Navigator>
       ) : (
