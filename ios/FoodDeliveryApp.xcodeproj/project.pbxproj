@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000524FA27D09F8F0024D16D /* RCTTMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 000524F927D09F8F0024D16D /* RCTTMap.m */; };
+		000524FC27D09FEA0024D16D /* TopLib_Op.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 000524FB27D09FEA0024D16D /* TopLib_Op.a */; };
 		00E356F31AD99517003FC87E /* FoodDeliveryAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FoodDeliveryAppTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -25,6 +27,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000524E527D09F4C0024D16D /* TMapGpsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapGpsManager.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapGpsManager.h"; sourceTree = "<group>"; };
+		000524E627D09F4C0024D16D /* TMapCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapCircle.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapCircle.h"; sourceTree = "<group>"; };
+		000524E727D09F4C0024D16D /* TMapPolyLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapPolyLine.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapPolyLine.h"; sourceTree = "<group>"; };
+		000524E827D09F4C0024D16D /* TMapKatec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapKatec.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapKatec.h"; sourceTree = "<group>"; };
+		000524E927D09F4C0024D16D /* TMapMarkerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapMarkerItem.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapMarkerItem.h"; sourceTree = "<group>"; };
+		000524EA27D09F4D0024D16D /* TMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapView.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapView.h"; sourceTree = "<group>"; };
+		000524EB27D09F4D0024D16D /* TMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMap.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMap.h"; sourceTree = "<group>"; };
+		000524EC27D09F4D0024D16D /* TMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapAnnotation.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapAnnotation.h"; sourceTree = "<group>"; };
+		000524ED27D09F4D0024D16D /* TMapOverlayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapOverlayItem.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapOverlayItem.h"; sourceTree = "<group>"; };
+		000524EE27D09F4D0024D16D /* TMapMarkerItem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapMarkerItem2.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapMarkerItem2.h"; sourceTree = "<group>"; };
+		000524EF27D09F4D0024D16D /* TMapPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapPolygon.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapPolygon.h"; sourceTree = "<group>"; };
+		000524F027D09F4D0024D16D /* TMapPOIItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapPOIItem.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapPOIItem.h"; sourceTree = "<group>"; };
+		000524F127D09F4D0024D16D /* TMapTapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapTapi.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapTapi.h"; sourceTree = "<group>"; };
+		000524F227D09F4D0024D16D /* TMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapObject.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapObject.h"; sourceTree = "<group>"; };
+		000524F327D09F4D0024D16D /* TMapPathData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapPathData.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapPathData.h"; sourceTree = "<group>"; };
+		000524F427D09F4D0024D16D /* TMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapPoint.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapPoint.h"; sourceTree = "<group>"; };
+		000524F527D09F4D0024D16D /* TMapType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapType.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapType.h"; sourceTree = "<group>"; };
+		000524F627D09F4D0024D16D /* TMapBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMapBaseView.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/TMapBaseView.h"; sourceTree = "<group>"; };
+		000524F727D09F4D0024D16D /* BizCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BizCategory.h; path = "../../../../../Desktop/[iOS]TmapSDK_1.49/lib/Headers/BizCategory.h"; sourceTree = "<group>"; };
+		000524F827D09F8F0024D16D /* RCTTMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTTMap.h; path = FoodDeliveryApp/RCTTMap.h; sourceTree = "<group>"; };
+		000524F927D09F8F0024D16D /* RCTTMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTTMap.m; path = FoodDeliveryApp/RCTTMap.m; sourceTree = "<group>"; };
+		000524FB27D09FEA0024D16D /* TopLib_Op.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TopLib_Op.a; sourceTree = "<group>"; };
+		000524FD27D0A0010024D16D /* FoodDeliveryApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FoodDeliveryApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* FoodDeliveryAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodDeliveryAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FoodDeliveryAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDeliveryAppTests.m; sourceTree = "<group>"; };
@@ -57,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000524FC27D09FEA0024D16D /* TopLib_Op.a in Frameworks */,
 				7B20AAF7FCAD66FEECB6D007 /* libPods-FoodDeliveryApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +90,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000524E427D09EB40024D16D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				000524F727D09F4D0024D16D /* BizCategory.h */,
+				000524EB27D09F4D0024D16D /* TMap.h */,
+				000524EC27D09F4D0024D16D /* TMapAnnotation.h */,
+				000524F627D09F4D0024D16D /* TMapBaseView.h */,
+				000524E627D09F4C0024D16D /* TMapCircle.h */,
+				000524E527D09F4C0024D16D /* TMapGpsManager.h */,
+				000524E827D09F4C0024D16D /* TMapKatec.h */,
+				000524E927D09F4C0024D16D /* TMapMarkerItem.h */,
+				000524EE27D09F4D0024D16D /* TMapMarkerItem2.h */,
+				000524F227D09F4D0024D16D /* TMapObject.h */,
+				000524ED27D09F4D0024D16D /* TMapOverlayItem.h */,
+				000524F327D09F4D0024D16D /* TMapPathData.h */,
+				000524F027D09F4D0024D16D /* TMapPOIItem.h */,
+				000524F427D09F4D0024D16D /* TMapPoint.h */,
+				000524EF27D09F4D0024D16D /* TMapPolygon.h */,
+				000524E727D09F4C0024D16D /* TMapPolyLine.h */,
+				000524F127D09F4D0024D16D /* TMapTapi.h */,
+				000524F527D09F4D0024D16D /* TMapType.h */,
+				000524EA27D09F4D0024D16D /* TMapView.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		00E356EF1AD99517003FC87E /* FoodDeliveryAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +136,8 @@
 		13B07FAE1A68108700A75B9A /* FoodDeliveryApp */ = {
 			isa = PBXGroup;
 			children = (
+				000524F827D09F8F0024D16D /* RCTTMap.h */,
+				000524F927D09F8F0024D16D /* RCTTMap.m */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -114,6 +168,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				000524FD27D0A0010024D16D /* FoodDeliveryApp-Bridging-Header.h */,
+				000524FB27D09FEA0024D16D /* TopLib_Op.a */,
+				000524E427D09EB40024D16D /* Headers */,
 				13B07FAE1A68108700A75B9A /* FoodDeliveryApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FoodDeliveryAppTests */,
@@ -198,7 +255,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -406,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000524FA27D09F8F0024D16D /* RCTTMap.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -426,13 +484,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 381F41E03904501762876607 /* Pods-FoodDeliveryApp-FoodDeliveryAppTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = FoodDeliveryAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,10 +512,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 397917F96D305D845AFE206C /* Pods-FoodDeliveryApp-FoodDeliveryAppTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = FoodDeliveryAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,6 +600,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					/usr/lib/swift,
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
@@ -609,6 +670,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					/usr/lib/swift,
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
@@ -672,7 +734,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -730,7 +792,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
