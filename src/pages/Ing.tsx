@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, Text, SafeAreaView} from 'react-native';
+import {Dimensions, Text, SafeAreaView, Alert} from 'react-native';
 import styled from 'styled-components/native';
 import NaverMapView, {Marker, Path} from 'react-native-nmap';
 import {useSelector} from 'react-redux';
@@ -7,6 +7,7 @@ import {RootState} from '../redux/store/reducer';
 import Geolocation from '@react-native-community/geolocation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {LoggedInParamList} from '../../App';
+import TMap from '../modules/Tmap';
 
 const IngContainer = styled.SafeAreaView`
   width: ${Dimensions.get('window').width}px;
@@ -111,6 +112,19 @@ function Ing({navigation}: IngScreenProps) {
             anchor={{x: 0.5, y: 0.5}}
             caption={{text: '출발'}}
             image={require('../assets/blue-dot.png')}
+            onClick={() => {
+              TMap.openNavi(
+                '출발지',
+                start.longitude.toString(),
+                start.latitude.toString(),
+                'MOTORCYCLE',
+              ).then(data => {
+                console.log('TMap callback', data);
+                if (!data) {
+                  Alert.alert('알림', '티맵을 설치하세요.');
+                }
+              });
+            }}
           />
           <Path
             coordinates={[
@@ -121,6 +135,19 @@ function Ing({navigation}: IngScreenProps) {
               {latitude: end.latitude, longitude: end.longitude},
             ]}
             color="orange"
+            onClick={() => {
+              TMap.openNavi(
+                '도착지',
+                end.longitude.toString(),
+                end.latitude.toString(),
+                'MOTORCYCLE',
+              ).then(data => {
+                console.log('TMap callback', data);
+                if (!data) {
+                  Alert.alert('알림', '티맵을 설치하세요.');
+                }
+              });
+            }}
           />
           <Marker
             coordinate={{latitude: end.latitude, longitude: end.longitude}}
