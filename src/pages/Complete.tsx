@@ -39,7 +39,7 @@ const ButtonWrapper = styled.View`
 
 const Button = styled.Pressable`
   align-items: center;
-  width: 120px;
+  width: 110px;
   margin: 5px;
   border-radius: 5px;
   padding-horizontal: 20px;
@@ -88,8 +88,7 @@ function Complete() {
     return ImagePicker.openCamera({
       includeBase64: true, // 미리보기 보시를 위해
       includeExif: true, // 찍은 핸드폰 방향에 맞춰서 사진이 자동으로 회전해줌
-      cropping: true,
-      // saveToPhotos: true,
+      saveToPhotos: true,
     })
       .then(onResponse)
       .catch(console.log);
