@@ -51,7 +51,7 @@ const orderSlice = createSlice({
         order => order.orderId === action.payload,
       );
       if (deliveriesIndex > -1) {
-        state.orders.splice(deliveriesIndex, 1);
+        state.deliveries.splice(deliveriesIndex, 1);
       }
     },
   },
