@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {Alert} from 'react-native';
+import {Alert, FlatList, View} from 'react-native';
 import axios, {AxiosError} from 'axios';
 import {useAppDispatch} from '../redux/store';
 import userSlice from '../redux/slices/user';
@@ -8,6 +8,8 @@ import {RootState} from '../redux/store/reducer';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import styled from 'styled-components/native';
 import useConfig from '../hooks/useConfig';
+import orderSlice from '../redux/slices/order';
+import EachComplete from '../components/EachComplete';
 
 const Container = styled.SafeAreaView``;
 
@@ -45,6 +47,7 @@ function Settings() {
   const {accessToken, money, name} = useSelector(
     (state: RootState) => state.user,
   );
+  const {completes} = useSelector((state: RootState) => state.order);
   const dispatch = useAppDispatch();
   const URL = useConfig();
   const onLogout = useCallback(async () => {
@@ -81,6 +84,22 @@ function Settings() {
     getMoney();
   }, [URL, accessToken, dispatch]);
 
+  useEffect(() => {
+    async function getCompletes() {
+      const response = await axios({
+        url: `${URL}/completes`,
+        method: 'GET',
+        headers: {authorization: `Bearer ${accessToken}`},
+      });
+      dispatch(orderSlice.actions.setCompelte(response.data.data));
+    }
+    getCompletes();
+  }, [URL, accessToken, dispatch]);
+
+  const renderItem = useCallback(({item}) => {
+    return <EachComplete item={item} />;
+  }, []);
+
   return (
     <Container>
       <Money>
@@ -92,6 +111,14 @@ function Settings() {
           원
         </MoneyText>
       </Money>
+      <View>
+        <FlatList
+          data={completes}
+          keyExtractor={com => com.orderId}
+          renderItem={renderItem}
+          numColumns={3}
+        />
+      </View>
       <ButtonZone>
         <LogoutButton onPress={onLogout}>
           <LogoutButtonText>로그아웃</LogoutButtonText>
