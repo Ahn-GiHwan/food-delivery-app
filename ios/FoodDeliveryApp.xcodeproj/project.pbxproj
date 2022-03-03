@@ -50,6 +50,7 @@
 		000524F927D09F8F0024D16D /* RCTTMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTTMap.m; path = FoodDeliveryApp/RCTTMap.m; sourceTree = "<group>"; };
 		000524FB27D09FEA0024D16D /* TopLib_Op.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TopLib_Op.a; sourceTree = "<group>"; };
 		000524FD27D0A0010024D16D /* FoodDeliveryApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FoodDeliveryApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		007D79F627D0DA4700421B12 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* FoodDeliveryAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodDeliveryAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FoodDeliveryAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodDeliveryAppTests.m; sourceTree = "<group>"; };
@@ -116,6 +117,14 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		007D79F327D0D94800421B12 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				007D79F627D0DA4700421B12 /* Ionicons.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		00E356EF1AD99517003FC87E /* FoodDeliveryAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +177,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				007D79F327D0D94800421B12 /* Fonts */,
 				000524FD27D0A0010024D16D /* FoodDeliveryApp-Bridging-Header.h */,
 				000524FB27D09FEA0024D16D /* TopLib_Op.a */,
 				000524E427D09EB40024D16D /* Headers */,
